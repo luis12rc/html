@@ -1,0 +1,231 @@
+
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Flores Amarillas para Ti 💛</title>
+<!-- Font Awesome para íconos -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: #f9f4e8;
+    color: #333;
+  }
+
+  /* Fondo y overlay */
+  .imagen-fondo {
+    background-image: url('tu-imagen-de-fondo.jpg'); /* reemplaza con tu imagen */
+    background-size: cover;
+    background-position: center;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: -2;
+  }
+  .overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(255, 255, 255, 0.3);
+    z-index: -1;
+  }
+
+  /* Contenedor principal */
+  .contenedor-principal {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+  }
+
+  /* Títulos y textos */
+  .titulo-principal {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3em;
+    color: #ffcc00;
+    margin-bottom: 20px;
+  }
+  .subtitulo {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+  }
+  .mensaje-destacado {
+    font-style: italic;
+    font-size: 1.1em;
+    margin-bottom: 30px;
+  }
+
+  /* Decoraciones */
+  .decoracion {
+    font-size: 2em;
+    position: absolute;
+  }
+  .decoracion-1 {
+    top: 10px;
+    left: 10px;
+  }
+  .decoracion-2 {
+    bottom: 10px;
+    right: 10px;
+  }
+
+  /* Secciones */
+  .seccion {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 50px;
+  }
+  .titulo-seccion {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2em;
+    margin-bottom: 15px;
+  }
+  .mensaje {
+    font-size: 1em;
+    margin-bottom: 20px;
+  }
+  .foto-pequena {
+    width: 100px;
+    height: auto;
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+  }
+
+  /* Modal styles */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+  }
+  .modal-contenido {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 400px;
+    width: 90%;
+    position: relative;
+  }
+  .modal-cerrar {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+  }
+  .modal-titulo {
+    margin-bottom: 15px;
+    font-family: 'Cormorant Garamond', serif;
+  }
+  .modal-ramo {
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+  }
+
+  /* Reproductor visible en la esquina superior derecha */
+  #reproductor-music {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+    background: #fff;
+    padding: 8px 12px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  /* Botones flotantes */
+  .control-musica, .flor-interactiva {
+    position: fixed;
+    bottom: 20px;
+    background: #fff;
+    padding: 10px;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    cursor: pointer;
+    font-size: 1.5em;
+  }
+  .control-musica {
+    right: 20px;
+  }
+  .flor-interactiva {
+    right: 70px;
+  }
+</style>
+</head>
+<body>
+
+<!-- Reproductor en la esquina superior derecha con botones Play/Pause -->
+<div id="reproductor-music">
+  <i class="fas fa-music"></i> 
+  <button id="playBtn" style="margin-left:8px;">Play</button>
+  <button id="pauseBtn">Pause</button>
+</div>
+<!-- Reproductor de música (inicia en loop, puede bloquear en algunos navegadores) -->
+<audio id="musica" src="musica/flores.mp3" loop></audio>
+
+<!-- Fondo y overlay -->
+<div class="imagen-fondo" id="imagen-fondo"></div>
+<div class="overlay"></div>
+
+<!-- Contenido principal -->
+<div class="contenedor-principal">
+    <div class="decoracion decoracion-1">🌻</div>
+    <div class="decoracion decoracion-2">🌻</div>
+
+    <section class="hero">
+        <h1 class="titulo-principal">Flores Amarillas para Ti</h1>
+        <p class="subtitulo">En este día especial, quiero expresarte lo que siento</p>
+        <p class="mensaje-destacado">
+            Que estas flores amarillas sean el reflejo de la luz que traes a mi vida, de la alegría que compartimos y del cariño que siento por ti.
+        </p>
+        <div class="corazon">💛</div>
+    </section>
+
+    <section class="seccion">
+        <h2 class="titulo-seccion">El Lenguaje de las Flores</h2>
+        <p class="mensaje">
+            Las flores amarillas simbolizan amistad, alegría y nuevos comienzos. Pero para mí, representan cada momento feliz que hemos compartido y la calidez que siento cuando estoy contigo.
+        </p>
+        <img src="images/1.jpg" alt="Flores de amistad" class="foto-pequena" />
+        <div class="corazon">🌻</div>
+    </section>
+
+    <section class="seccion">
+        <h2 class="titulo-seccion">Como un Girasol</h2>
+        <p class="mensaje">
+            Eres como un girasol para mí: siempre buscas el lado positivo de las cosas y tu presencia ilumina mis días como el sol ilumina a estas flores.
+        </p>
+        <img src="images/2.jpg" alt="Girasol brillante" class="foto-pequena" />
+        <div class="corazon">✨</div>
+    </section>
+
+    <section class="seccion">
+        <div class="final">
+            <h2 class="titulo-seccion">Para Ti, en Este Día Especial</h2>
+            <p class="mensaje">
+                Que estas flores amarillas te recuerden lo especial que eres y lo mucho que valoro cada momento a tu lado. Gracias por ser esa persona maravillosa que ilumina cada instante.
+            </p>
+            <img src="images/3.jpg" alt="Ramo de flores" class="foto-pequena" />
+            <div class="mensaje-humilde">
+                <p>Quizá no tenga los recursos para darte todo lo que te mereces, pero cada línea de código de esta página fue escrita con todo mi amor, pensando en ti y en hacerte son
